@@ -1,5 +1,13 @@
 package edu.austral.ingsis.math;
 
+import edu.austral.ingsis.math.Operation.Addition;
+import edu.austral.ingsis.math.Operation.Division;
+import edu.austral.ingsis.math.Operation.Multiplication;
+import edu.austral.ingsis.math.Operation.Power;
+import edu.austral.ingsis.math.Operation.Subtraction;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -10,7 +18,10 @@ public class ResolutionWithVariablesTest {
   /** Case 1 + x where x = 3 */
   @Test
   public void shouldResolveFunction1() {
-    final Double result = 4d;
+    final Function function1 = new Value(1);
+    final Function function2 = new Variable("x");
+    final double result = new Addition(function1, function2).evaluate(new HashMap<>(
+        Collections.singletonMap("x", 3.0)));
 
     assertThat(result, equalTo(4d));
   }
@@ -18,15 +29,24 @@ public class ResolutionWithVariablesTest {
   /** Case 12 / div where div = 4 */
   @Test
   public void shouldResolveFunction2() {
-    final Double result = 3d;
+    final Function function1 = new Value(12);
+    final Function function2 = new Variable("div");
 
+    final Double result = new Division(function1, function2).evaluate(new HashMap<>(Collections.singletonMap("div", 4.0)));
     assertThat(result, equalTo(3d));
   }
 
   /** Case (9 / x) * y where x = 3 and y = 4 */
   @Test
   public void shouldResolveFunction3() {
-    final Double result = 12d;
+    final Function function1 = new Value(9);
+    final Function function2 = new Variable("x");
+    final Function function3 = new Variable("y");
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("x", 3.0);
+    variables.put("y", 4.0);
+
+    final Double result = new Multiplication(new Division(function1, function2), function3).evaluate(variables);
 
     assertThat(result, equalTo(12d));
   }
@@ -34,7 +54,14 @@ public class ResolutionWithVariablesTest {
   /** Case (27 / a) ^ b where a = 9 and b = 3 */
   @Test
   public void shouldResolveFunction4() {
-    final Double result = 27d;
+    final Function function1 = new Value(27);
+    final Function function2 = new Variable("a");
+    final Function function3 = new Variable("b");
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("a", 9.0);
+    variables.put ("b", 3.0);
+    final Function result1 = new Division(function1, function2);
+    final Double result = new Power(result1, function3).evaluate(variables);
 
     assertThat(result, equalTo(27d));
   }
@@ -42,7 +69,11 @@ public class ResolutionWithVariablesTest {
   /** Case z ^ (1/2) where z = 36 */
   @Test
   public void shouldResolveFunction5() {
-    final Double result = 6d;
+    final Function function1 = new Variable("z");
+    final Function function2 = new Value(1.0 / 2.0);
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("z", 36.0);
+    final Double result = new Power(function1, function2).evaluate(variables);
 
     assertThat(result, equalTo(6d));
   }
@@ -50,7 +81,10 @@ public class ResolutionWithVariablesTest {
   /** Case |value| - 8 where value = 8 */
   @Test
   public void shouldResolveFunction6() {
-    final Double result = 0d;
+    final Function function1 = new Variable("value");
+    final Function function2 = new Value(8.0);
+    final double result = new Subtraction(new Modulo(function1), function2).evaluate(new HashMap<>(Collections.singletonMap("value", 8.0)));
+
 
     assertThat(result, equalTo(0d));
   }
@@ -58,7 +92,10 @@ public class ResolutionWithVariablesTest {
   /** Case |value| - 8 where value = 8 */
   @Test
   public void shouldResolveFunction7() {
-    final Double result = 0d;
+    final Function function1 = new Variable("value");
+    final Function function2 = new Value(8.0);
+    final double result = new Subtraction(new Modulo(function1), function2).evaluate(new HashMap<>(Collections.singletonMap("value", 8.0)));
+
 
     assertThat(result, equalTo(0d));
   }
@@ -66,7 +103,10 @@ public class ResolutionWithVariablesTest {
   /** Case (5 - i) * 8 where i = 2 */
   @Test
   public void shouldResolveFunction8() {
-    final Double result = 24d;
+    final Function function1 = new Value(5);
+    final Function function2 = new Variable("i");
+    final Function function3 = new Value(8);
+    final double result = new Multiplication(new Subtraction(function1, function2), function3).evaluate(new HashMap<>(Collections.singletonMap("i", 2.0)));
 
     assertThat(result, equalTo(24d));
   }
