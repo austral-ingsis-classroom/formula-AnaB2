@@ -5,18 +5,9 @@ import java.util.Map;
 
 public interface Function {
 
-  double evaluate(Map<String,Double>variableValues);
+  double evaluate(Map<String, Double> variableValues);
+
   String toString();
+
   List<String> listVariables(List<String> variables);
-
-
-
-
-
-
-
-
-
-
-
 }

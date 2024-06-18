@@ -8,11 +8,10 @@ public class Division implements Operation {
   Function right;
   Function left;
 
-  public Division(Function right, Function left){
-      this.right = right;
-      this.left = left;
-    }
-
+  public Division(Function right, Function left) {
+    this.right = right;
+    this.left = left;
+  }
 
   @Override
   public double evaluate(Map<String, Double> variableValues) {
@@ -27,10 +26,7 @@ public class Division implements Operation {
   }
 
   @Override
-    public String toString() {
+  public String toString() {
     return right.toString() + " / " + left.toString();
   }
-
-
-
 }

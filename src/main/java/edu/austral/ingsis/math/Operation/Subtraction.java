@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Subtraction implements Operation {
-    Function right;
-    Function left;
+  Function right;
+  Function left;
 
+  public Subtraction(Function right, Function left) {
+    this.right = right;
+    this.left = left;
+  }
 
-    public Subtraction(Function right, Function left){
-      this.right = right;
-      this.left = left;
-    }
   @Override
   public double evaluate(Map<String, Double> variableValues) {
     return right.evaluate(variableValues) - left.evaluate(variableValues);
@@ -25,17 +25,8 @@ public class Subtraction implements Operation {
     return variables;
   }
 
-
   @Override
-    public String toString() {
-    return  right.toString() + " - " + left.toString() ;
+  public String toString() {
+    return right.toString() + " - " + left.toString();
   }
-
-
-
-
-
-
-
-
 }

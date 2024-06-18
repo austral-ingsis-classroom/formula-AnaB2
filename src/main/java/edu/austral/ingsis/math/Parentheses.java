@@ -10,7 +10,6 @@ public class Parentheses implements Function {
     this.function = function;
   }
 
-
   @Override
   public double evaluate(Map<String, Double> variableValues) {
     return function.evaluate(variableValues);
@@ -20,7 +19,6 @@ public class Parentheses implements Function {
   public List<String> listVariables(List<String> variables) {
     return function.listVariables(variables);
   }
-
 
   @Override
   public String toString() {

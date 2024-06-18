@@ -8,15 +8,10 @@ public class Addition implements Operation {
   Function right;
   Function left;
 
-  public Addition(Function right, Function left){
+  public Addition(Function right, Function left) {
     this.right = right;
     this.left = left;
   }
-
-
-
-
-
 
   @Override
   public double evaluate(Map<String, Double> variableValues) {
@@ -30,12 +25,8 @@ public class Addition implements Operation {
     return variables;
   }
 
-
-
   @Override
-    public String toString() {
-    return  right.toString() + " + " + left.toString() ;
+  public String toString() {
+    return right.toString() + " + " + left.toString();
   }
-
-
 }

@@ -1,14 +1,13 @@
 package edu.austral.ingsis.math;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class Value implements Function{
+public class Value implements Function {
 
   private final double value;
 
-  public Value(double value){
+  public Value(double value) {
     this.value = value;
   }
 
@@ -23,13 +22,7 @@ public class Value implements Function{
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return Double.toString(value);
-
-
   }
-
-
-
-
 }

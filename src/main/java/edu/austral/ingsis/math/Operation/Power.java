@@ -8,7 +8,7 @@ public class Power implements Operation {
   Function right;
   Function left;
 
-  public Power(Function right, Function left){
+  public Power(Function right, Function left) {
     this.right = right;
     this.left = left;
   }
@@ -25,10 +25,8 @@ public class Power implements Operation {
     return variables;
   }
 
-
   @Override
-    public String toString() {
-    return  right.toString() + " ^ " + left.toString() ;
+  public String toString() {
+    return right.toString() + " ^ " + left.toString();
   }
-
 }

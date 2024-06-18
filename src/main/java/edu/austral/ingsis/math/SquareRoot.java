@@ -3,13 +3,12 @@ package edu.austral.ingsis.math;
 import java.util.List;
 import java.util.Map;
 
-public class SquareRoot implements Function{
+public class SquareRoot implements Function {
   private final Function function;
 
-  public SquareRoot(Function function){
+  public SquareRoot(Function function) {
     this.function = function;
   }
-
 
   @Override
   public double evaluate(Map<String, Double> variableValues) {
@@ -21,14 +20,8 @@ public class SquareRoot implements Function{
     return function.listVariables(variables);
   }
 
-
   @Override
-    public String toString() {
+  public String toString() {
     return "sqrt(" + function.toString() + ")";
   }
-
-
-
-
-
 }
