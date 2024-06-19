@@ -1,0 +1,86 @@
+@startuml
+
+interface Function {
+    + evaluate(variableValues: Map<String, Double>): double
+    + toString(): String
+    + listVariables(variables: List<String>): List<String>
+}
+
+interface Operation extends Function {
+    +Function value1
+    +Function value2
+}
+
+class CompositeFunction implements Function {
+    -List<Function> functions
+
+    +calculate(): double
+    +addFunction(Function)
+}
+
+class Addition implements Operation {
+    -Function value1
+    -Function value2
+
+    +calculate(): double
+    +getFirstOperand(): Function
+    +getSecondOperand(): Function
+}
+
+class Subtraction implements Operation {
+    -Function value1
+    -Function value2
+
+    +calculate(): double
+    +getFirstOperand(): Function
+    +getSecondOperand(): Function
+}
+
+class Multiplication implements Operation {
+    -Function value1
+    -Function value2
+
+    +calculate(): double
+    +getFirstOperand(): Function
+    +getSecondOperand(): Function
+}
+
+class Division implements Operation {
+    -Function value1
+    -Function value2
+
+    +calculate(): double
+    +getFirstOperand(): Function
+    +getSecondOperand(): Function
+}
+
+class Variable implements Function {
+    -String variable
+
+
+
+}
+
+class Value implements Function {
+    -double value
+
+
+}
+
+class Modulo implements Function {
+
+}
+
+class SquareRoot implements Function {
+
+}
+
+
+
+
+
+
+
+CompositeFunction o-- Function
+
+@enduml
